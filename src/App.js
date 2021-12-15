@@ -5,12 +5,33 @@ import Header from './components/header/header.component';
 import HomePage from './pages/homePage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignIn from './pages/sign-in-and-sign-up/sign-in-sign-up.component';
+import {auth} from './firebase/firebase.utils'
 
+class App extends React.Component{
+  constructor(){
+    super();
 
-function App() {
+    this.state = {
+      currentUser : null
+    }
+  }
+
+  unsubscribeFromAuth = null;
+  componentDidMount(){
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(user =>{
+      this.setState({currentUser : user})
+      console.log(user);
+    })
+  }
+
+  componentWillUnmount(){
+    this.unsubscribeFromAuth();
+  }
+
+render() {
   return (
     <div className="App">
-    <Header/>
+    <Header currentUser={this.state.currentUser}/>
       <Routes>
         <Route  exact path="/" element={<HomePage />} />
         <Route exact path="/shop" element={<ShopPage/>} />
@@ -19,5 +40,5 @@ function App() {
     </div>
   );
 }
-
+}
 export default App;

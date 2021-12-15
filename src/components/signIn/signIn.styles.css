@@ -1,5 +1,5 @@
 .sign-in {
-  width: 30vw;
+  width: 40vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11,5 +11,15 @@
 
 .sign-in .title {
   margin: 10px 0;
+}
+
+.sign-in .authButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.sign-in .authButtons button {
+  margin: 0 3%;
 }
 /*# sourceMappingURL=signIn.styles.css.map */
