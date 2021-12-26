@@ -5,7 +5,7 @@ import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore"
 import 'firebase/compat/auth';
 import "firebase/auth";
- 
+
 const config = {
     apiKey: "AIzaSyDKPKOLhKbTDUm8R-z_TRNxDqpw-g4iMdA",
     authDomain: "crowndb-f142c.firebaseapp.com",
@@ -15,7 +15,7 @@ const config = {
     appId: "1:322798782111:web:750b2e0b40fcdc99e144aa",
     measurementId: "G-ETZBR734Z6"
 };
- 
+
 const firebaseApp = initializeApp(config);
 
 export const db = getFirestore(firebaseApp);
@@ -26,10 +26,8 @@ getFirestore()
 export const createUserProfileDocument = async (userAuth, additionalData) =>{
   if(!userAuth) return;
   const userRef = doc(firestore, `users/${userAuth.uid}`);
-
   const snapShot =  await getDoc(userRef);
   
-
   if(snapShot.exists){
     const {displayName, email} = userAuth;
     const createdAt = new Date()
@@ -48,7 +46,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) =>{
   }
   return userRef
 }
- 
+
 
 
 const provider = new GoogleAuthProvider();
