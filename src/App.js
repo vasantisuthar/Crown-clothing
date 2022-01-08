@@ -12,6 +12,7 @@ import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-sign-up.compone
 import {selectCurrentUser} from './redux/user/user.selector'
 import {createStructuredSelector} from 'reselect'
 import CheckoutPage from './pages/checkout/checkout.component';
+import CategoryPage from './pages/collection/collection.component';
 class App extends React.Component{
 
   unsubscribeFromAuth = null;
@@ -45,9 +46,8 @@ render() {
       <Routes>
 
         <Route  exact path="/" element={<HomePage />} />
-        <Route exact path="/shop" element={<ShopPage/>} />
+        <Route exact path="shop/*" element={<ShopPage/>} />
         <Route exact path="/checkout" element={<CheckoutPage/>} />
-
         <Route exact path="/signin" element={this.props.currentUser ? (<Navigate replace to="/" />) : (<SignInAndSignUp />)
     }
     
