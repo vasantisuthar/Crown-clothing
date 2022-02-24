@@ -45,13 +45,13 @@ render() {
     <Header/>
       <Routes>
 
-        <Route  exact path="/" element={<HomePage />} />
+        <Route exact path="/" element={<HomePage />} />
         <Route exact path="shop/*" element={<ShopPage/>} />
         <Route exact path="/checkout" element={<CheckoutPage/>} />
         <Route exact path="/signin" element={this.props.currentUser ? (<Navigate replace to="/" />) : (<SignInAndSignUp />)
     }
-    
-/>      </Routes>
+/> 
+    </Routes>
     </div>
   );
 }
