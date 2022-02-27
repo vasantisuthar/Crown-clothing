@@ -8,7 +8,6 @@ import { createStructuredSelector } from "reselect";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import { selectCartHidden } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selector";
-// import './header.styles.css'
 import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from "./header.styles";
 
 

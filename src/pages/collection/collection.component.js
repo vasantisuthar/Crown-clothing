@@ -9,7 +9,6 @@ const CollectionPage = () => {
     
     let params = useParams();
     const collection = useSelector(selectCollection(params.categoryId))
-    // const {title, items} = collection;
     return ( 
         <div className="collection-page"> 
             <h2 className="title">{collection.title}</h2>
@@ -18,12 +17,8 @@ const CollectionPage = () => {
                     collection.items.map(item => <CollectionItem key={item.id} item={item}/>)
                 }
             </div>
-            {/* <h3>{params.categoryId}</h3> */}
         </div>
-     );
+    );
 }
- 
-// const mapStateToProps = (state, ownProps) => createStructuredSelector({
-//     collection:selectCollection(ownProps.params.categoryId)(state)
-// })
+
 export default CollectionPage;

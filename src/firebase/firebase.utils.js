@@ -1,6 +1,6 @@
 import { initializeApp } from "@firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, collection,getDoc, setDoc, writeBatch } from 'firebase/firestore';
 import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore"
 import 'firebase/compat/auth';
@@ -47,7 +47,32 @@ export const createUserProfileDocument = async (userAuth, additionalData) =>{
   return userRef
 }
 
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const batch = writeBatch(db);
 
+  objectsToAdd.forEach((element) => {
+    const docRef = doc(collection(db, collectionKey))
+    batch.set(docRef, element)
+});
+
+  return await batch.commit()
+}
+
+export const convertCollectionsSnapshotToMap = (collections) => {
+  const transformedCollection = collections.docs.map(doc => {
+    const {title, items}  = doc.data();
+    return {
+      routeName : encodeURI(title.toLowerCase?.()),
+      id: doc.id,
+      title,
+      items
+    }
+  });
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase?.()] = collection;
+    return accumulator;
+  }, {});
+}
 
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
