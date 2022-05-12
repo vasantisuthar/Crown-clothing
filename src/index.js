@@ -10,7 +10,7 @@ import {store, persistor} from './redux/store';
 
 ReactDOM.render(
   <Provider store = {store}>
-    <BrowserRouter basename='/'>
+    <BrowserRouter basename='/index.html'>
     <PersistGate persistor={persistor}>
       <App />
     </PersistGate>
